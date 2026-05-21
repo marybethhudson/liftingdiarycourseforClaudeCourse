@@ -1,4 +1,5 @@
 import { pgTable, uuid, text, integer, numeric, timestamp } from 'drizzle-orm/pg-core';
+import { relations } from 'drizzle-orm';
 
 export const workouts = pgTable('workouts', {
   id: uuid('id').primaryKey().defaultRandom(),
@@ -33,3 +34,21 @@ export const sets = pgTable('sets', {
   weightLbs: numeric('weight_lbs', { precision: 6, scale: 2 }),
   notes: text('notes'),
 });
+
+export const workoutRelations = relations(workouts, ({ many }) => ({
+  workoutExercises: many(workoutExercises),
+}));
+
+export const exerciseRelations = relations(exercises, ({ many }) => ({
+  workoutExercises: many(workoutExercises),
+}));
+
+export const workoutExerciseRelations = relations(workoutExercises, ({ one, many }) => ({
+  workout: one(workouts, { fields: [workoutExercises.workoutId], references: [workouts.id] }),
+  exercise: one(exercises, { fields: [workoutExercises.exerciseId], references: [exercises.id] }),
+  sets: many(sets),
+}));
+
+export const setRelations = relations(sets, ({ one }) => ({
+  workoutExercise: one(workoutExercises, { fields: [sets.workoutExerciseId], references: [workoutExercises.id] }),
+}));
