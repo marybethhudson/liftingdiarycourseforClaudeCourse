@@ -1,30 +1,33 @@
 CREATE TABLE "exercises" (
-	"id" serial PRIMARY KEY NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"name" text NOT NULL,
-	"created_at" timestamp DEFAULT now() NOT NULL
+	"created_at" timestamp DEFAULT now() NOT NULL,
+	"updated_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "sets" (
-	"id" serial PRIMARY KEY NOT NULL,
-	"workout_exercise_id" integer NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"workout_exercise_id" uuid NOT NULL,
 	"set_number" integer NOT NULL,
 	"reps" integer,
 	"weight_lbs" numeric(6, 2),
-	"created_at" timestamp DEFAULT now() NOT NULL
+	"notes" text
 );
 --> statement-breakpoint
 CREATE TABLE "workout_exercises" (
-	"id" serial PRIMARY KEY NOT NULL,
-	"workout_id" integer NOT NULL,
-	"exercise_id" integer NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"workout_id" uuid NOT NULL,
+	"exercise_id" uuid NOT NULL,
+	"order" integer NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "workouts" (
-	"id" serial PRIMARY KEY NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"user_id" text NOT NULL,
 	"name" text NOT NULL,
-	"performed_at" timestamp NOT NULL,
+	"started_at" timestamp NOT NULL,
+	"completed_at" timestamp,
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );
