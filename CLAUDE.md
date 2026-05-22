@@ -4,6 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 @AGENTS.md
 
+## Docs
+
+**Before generating any code, always consult the relevant file in the `/docs` directory first.** The `/docs` directory contains coding standards and conventions that must be followed throughout this project. Do not write code that conflicts with those standards.
+
+- /docs/ui.md
+
 ## Project
 
 A lifting diary web app built with Next.js 16, React 19, TypeScript, and Tailwind CSS v4. Currently at the scaffold stage — no application code has been written yet.

@@ -32,7 +32,6 @@ export const sets = pgTable('sets', {
   setNumber: integer('set_number').notNull(),
   reps: integer('reps'),
   weightLbs: numeric('weight_lbs', { precision: 6, scale: 2 }),
-  notes: text('notes'),
 });
 
 export const workoutRelations = relations(workouts, ({ many }) => ({
