@@ -6,9 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Docs
 
-**Before generating any code, always consult the relevant file in the `/docs` directory first.** The `/docs` directory contains coding standards and conventions that must be followed throughout this project. Do not write code that conflicts with those standards.
+**Before generating any code, always consult the relevant file in the `/docs` directory first.** The `/docs` directory contains coding standards and conventions that must be followed throughout this project. Do not write code that conflicts with those standards:
 
 - /docs/ui.md
+- /docs/data-fetching.md
 
 ## Project
 
